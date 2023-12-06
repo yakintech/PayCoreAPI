@@ -1,22 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using PayCoreAPI.Models.DTO.Product.create;
 using PayCoreAPI.Models.DTO.Product.get;
 using PayCoreAPI.Models.ORM;
 
 namespace PayCoreAPI.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class ProductController : ControllerBase
+
+    public class ProductController : BaseController
     {
-
-        PayCoreContext db;
-
-        public ProductController()
-        {
-            db = new PayCoreContext();
-        }
-
 
         [HttpGet]
         public IActionResult GetAll()

@@ -5,15 +5,10 @@ using PayCoreAPI.Models.ORM;
 
 namespace PayCoreAPI.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class ClientController : ControllerBase
+  
+    public class ClientController : BaseController
     {
-        PayCoreContext db;
 
-        public ClientController() { 
-            db = new PayCoreContext();
-        }
 
         [HttpGet]
         public IActionResult GetAll()
@@ -41,6 +36,7 @@ namespace PayCoreAPI.Controllers
             client.Phone = model.Phone;
             client.Surname = model.Surname;
             client.Address = model.Address;
+            client.Password = model.Password;
 
             db.Clients.Add(client);
             db.SaveChanges();

@@ -5,16 +5,8 @@ using PayCoreAPI.Models.ORM;
 
 namespace PayCoreAPI.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class OrderController : ControllerBase
+    public class OrderController : BaseController
     {
-        PayCoreContext db;
-
-        public OrderController()
-        {
-            db = new PayCoreContext();
-        }
 
         [HttpGet]
         public IActionResult GetAllOrders() 

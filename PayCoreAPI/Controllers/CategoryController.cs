@@ -4,15 +4,9 @@ using PayCoreAPI.Models.ORM;
 namespace PayCoreAPI.Controllers
 {
 
-    [Route("api/[controller]")]
-    [ApiController]
-    public class CategoryController : ControllerBase
+    public class CategoryController : BaseController
     {
-        PayCoreContext db;
-        public CategoryController()
-        {
-            db = new PayCoreContext();
-        }
+  
 
         [HttpGet]
         public IActionResult GetAll()
