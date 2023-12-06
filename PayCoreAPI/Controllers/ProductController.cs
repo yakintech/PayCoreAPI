@@ -38,7 +38,7 @@ namespace PayCoreAPI.Controllers
         {
             var product = db.Products.FirstOrDefault(x => x.Id == id);
 
-            if(product == null)
+            if (product == null)
             {
                 return NotFound();
             }
@@ -76,6 +76,22 @@ namespace PayCoreAPI.Controllers
 
             return StatusCode(201, response);
         }
-       
+
+        [HttpDelete]
+        public IActionResult Delete(int id)
+        {
+            //disaridan parametre olarak aldigi id ye gore urunu yakaliyorum
+            var product = db.Products.FirstOrDefault(x => x.Id == id);
+
+            if (product == null)
+                return NotFound();
+
+
+            db.Products.Remove(product);
+            db.SaveChanges();
+
+            return Ok();
+        }
+
     }
 }

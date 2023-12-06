@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PayCoreAPI.Models.ORM;
 
@@ -11,9 +12,10 @@ using PayCoreAPI.Models.ORM;
 namespace PayCoreAPI.Migrations
 {
     [DbContext(typeof(PayCoreContext))]
-    partial class PayCoreContextModelSnapshot : ModelSnapshot
+    [Migration("20231206080540_OrderDetailsTableCreated")]
+    partial class OrderDetailsTableCreated
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -47,7 +49,7 @@ namespace PayCoreAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories", (string)null);
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("PayCoreAPI.Models.ORM.Client", b =>
@@ -86,7 +88,7 @@ namespace PayCoreAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Clients", (string)null);
+                    b.ToTable("Clients");
                 });
 
             modelBuilder.Entity("PayCoreAPI.Models.ORM.Order", b =>
@@ -123,7 +125,7 @@ namespace PayCoreAPI.Migrations
 
                     b.HasIndex("ClientId");
 
-                    b.ToTable("Orders", (string)null);
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("PayCoreAPI.Models.ORM.OrderDetail", b =>
@@ -158,7 +160,7 @@ namespace PayCoreAPI.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("OrderDetails", (string)null);
+                    b.ToTable("OrderDetails");
                 });
 
             modelBuilder.Entity("PayCoreAPI.Models.ORM.Product", b =>
@@ -187,7 +189,7 @@ namespace PayCoreAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Products", (string)null);
+                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("PayCoreAPI.Models.ORM.Order", b =>

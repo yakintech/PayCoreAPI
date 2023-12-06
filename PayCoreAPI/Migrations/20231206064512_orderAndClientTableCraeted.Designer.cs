@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PayCoreAPI.Models.ORM;
 
@@ -11,9 +12,10 @@ using PayCoreAPI.Models.ORM;
 namespace PayCoreAPI.Migrations
 {
     [DbContext(typeof(PayCoreContext))]
-    partial class PayCoreContextModelSnapshot : ModelSnapshot
+    [Migration("20231206064512_orderAndClientTableCraeted")]
+    partial class orderAndClientTableCraeted
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -47,7 +49,7 @@ namespace PayCoreAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories", (string)null);
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("PayCoreAPI.Models.ORM.Client", b =>
@@ -86,7 +88,7 @@ namespace PayCoreAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Clients", (string)null);
+                    b.ToTable("Clients");
                 });
 
             modelBuilder.Entity("PayCoreAPI.Models.ORM.Order", b =>
@@ -100,65 +102,18 @@ namespace PayCoreAPI.Migrations
                     b.Property<DateTime>("AddDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("ClientId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("OrderNumber")
                         .HasColumnType("int");
 
-                    b.Property<int>("OrderStatus")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("UpdateDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ClientId");
-
-                    b.ToTable("Orders", (string)null);
-                });
-
-            modelBuilder.Entity("PayCoreAPI.Models.ORM.OrderDetail", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<DateTime>("AddDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("OrderId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("UnitPrice")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<DateTime>("UpdateDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("OrderId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("OrderDetails", (string)null);
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("PayCoreAPI.Models.ORM.Product", b =>
@@ -187,37 +142,7 @@ namespace PayCoreAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Products", (string)null);
-                });
-
-            modelBuilder.Entity("PayCoreAPI.Models.ORM.Order", b =>
-                {
-                    b.HasOne("PayCoreAPI.Models.ORM.Client", "Client")
-                        .WithMany()
-                        .HasForeignKey("ClientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Client");
-                });
-
-            modelBuilder.Entity("PayCoreAPI.Models.ORM.OrderDetail", b =>
-                {
-                    b.HasOne("PayCoreAPI.Models.ORM.Order", "Order")
-                        .WithMany()
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("PayCoreAPI.Models.ORM.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Order");
-
-                    b.Navigation("Product");
+                    b.ToTable("Products");
                 });
 #pragma warning restore 612, 618
         }
