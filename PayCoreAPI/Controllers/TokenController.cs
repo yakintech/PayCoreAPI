@@ -21,7 +21,7 @@ namespace PayCoreAPI.Controllers
         {
             //email ve sifre dogruya kullaniciya token verecegim!
 
-            var user = db.Clients.FirstOrDefault(q => q.EMail== loginRequestModel.EMail && q.Password == loginRequestModel.Password);
+            var user = db.Clients.FirstOrDefault(q => q.EMail.Trim().ToLower() == loginRequestModel.EMail.Trim().ToLower() && q.Password == loginRequestModel.Password);
 
             if (user == null)
             {
