@@ -55,6 +55,7 @@ namespace PayCoreAPI.Controllers
             Product product = new Product();
             product.Name = model.Name;
             product.UnitPrice = model.UnitPrice;
+            product.Stock = model.Stock;
 
             db.Products.Add(product);
             db.SaveChanges();
@@ -64,6 +65,7 @@ namespace PayCoreAPI.Controllers
             response.Name = product.Name;
             response.UnitPrice = product.UnitPrice;
             response.AddDate = product.AddDate;
+            response.Stock = product.Stock;
 
 
             return StatusCode(201, response);

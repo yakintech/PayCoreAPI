@@ -18,8 +18,7 @@ builder.Services.AddCors(options =>
         .AllowAnyOrigin()
         .AllowAnyHeader()
         .AllowAnyMethod()
-        .AllowCredentials()
-        .WithMethods("GET", "PUT", "DELETE", "POST", "PATCH") //not really necessary when AllowAnyMethods is used.
+       
         );
 });
 
